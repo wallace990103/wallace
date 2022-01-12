@@ -1,0 +1,25 @@
+makeCacheMatrix <- function(x = matrix(sample(1:50,8),4,4)) {
+        W <- NULL
+        set <- function(y) {
+                x <<- y
+                W <<- NULL
+        }
+        get <- function() x
+        setmean <- function(solve) W <<- mean
+        getmean <- function() W
+        list(set = set, get = get,
+             setmean = setmean,
+             getmean = getsmean)
+}
+
+cachemean <- function(x, ...) {
+        W <- x$getmean()
+        if(!is.null(W)) {
+                message("getting cashed matrix")
+                return(W)
+        }
+        data <- x$get()
+        W <- mean(data, ...)
+        x$setsmean(W)
+        W
+}
